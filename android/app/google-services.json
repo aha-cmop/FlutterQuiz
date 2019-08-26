@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "863321652018",
+    "firebase_url": "https://visitor-online.firebaseio.com",
+    "project_id": "visitor-online",
+    "storage_bucket": "visitor-online.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863321652018:android:eb16fe3c09980099",
+        "android_client_info": {
+          "package_name": "underground.visitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863321652018-7fgctjpopj8fvl29ecphpa0umt6rqji1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApGVY43bXSQkU-ENxrKYtySuM7LGTC2Kk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863321652018-7fgctjpopj8fvl29ecphpa0umt6rqji1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
