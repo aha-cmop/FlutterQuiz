@@ -321,38 +321,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                         autovalidate: _autoValidate,
                         child: Column(
                           children: <Widget>[
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 140,
-                              child: Stack(
-                                children: <Widget>[
-                                  Positioned(
-                                    child: Align(
-                                      child: Container(
-                                        width: 130,
-                                        height: 130,
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Theme.of(context).primaryColor),
-                                      ),
-                                      alignment: Alignment.center,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    child: Container(
-                                      child: Text(
-                                        "LOGIN",
-                                        style: TextStyle(
-                                          fontSize: 48,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      alignment: Alignment.center,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            SizedBox(
+                              height: 100,
                             ),
                             Padding(
                                 padding: EdgeInsets.only(bottom: 20, top: 60),
@@ -362,7 +332,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                   },
                                   validator: emailValidator,
                                   icon: Icon(Icons.email),
-                                  hint: "EMAIL",
+                                  hint: "Почта",
                                 )),
                             Padding(
                                 padding: EdgeInsets.only(bottom: 20),
@@ -372,7 +342,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                   onSaved: (input) => _password = input,
                                   validator: (input) =>
                                   input.isEmpty ? "*Required" : null,
-                                  hint: "PASSWORD",
+                                  hint: "Пароль",
                                 )),
                             SizedBox(
                               height: 20,
@@ -389,7 +359,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                               )
                                   : Container(
                                 child: filledButton(
-                                    "LOGIN",
+                                    "Войти",
                                     Colors.white,
                                     primaryColor,
                                     primaryColor,
@@ -584,11 +554,10 @@ class _LoginRegisterState extends State<LoginRegister> {
         backgroundColor: Theme.of(context).primaryColor,
         body: Column(
           children: <Widget>[
-            logo(),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.40,),
             Padding(
               child: Container(
-                child: filledButton("LOGIN", primaryColor, Colors.white,
+                child: filledButton("Вход", primaryColor, Colors.white,
                     Colors.white, primaryColor, loginSheet),
                 height: 50,
               ),
@@ -618,6 +587,7 @@ class _LoginRegisterState extends State<LoginRegister> {
             )
           ],
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
         ));
   }
 }
