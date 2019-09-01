@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'GO',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          hintColor: Color(0xFFD81B60),
+          hintColor: Color(0xFFC5C5C5),
           primaryColor: Color(0xFF0B7BC1),
           fontFamily: "Montserrat",
           canvasColor: Colors.transparent),
