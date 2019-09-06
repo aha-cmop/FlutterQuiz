@@ -340,8 +340,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                   icon: Icon(Icons.lock),
                                   obsecure: true,
                                   onSaved: (input) => _password = input,
-                                  validator: (input) =>
-                                  input.isEmpty ? "*Required" : null,
+                                  validator: (input) => input.isEmpty ? "*Required" : null,
                                   hint: "Пароль",
                                 )),
                             SizedBox(
@@ -423,57 +422,6 @@ class _LoginRegisterState extends State<LoginRegister> {
                   SingleChildScrollView(
                       child: Form(
                         child: Column(children: <Widget>[
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 140,
-                            child: Stack(
-                              children: <Widget>[
-                                Positioned(
-                                  child: Align(
-                                    child: Container(
-                                      width: 130,
-                                      height: 130,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context).primaryColor),
-                                    ),
-                                    alignment: Alignment.center,
-                                  ),
-                                ),
-                                Positioned(
-                                  child: Container(
-                                    padding: EdgeInsets.only(bottom: 25, right: 40),
-                                    child: Text(
-                                      "REGI",
-                                      style: TextStyle(
-                                        fontSize: 44,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    alignment: Alignment.center,
-                                  ),
-                                ),
-                                Positioned(
-                                  child: Align(
-                                    child: Container(
-                                      padding: EdgeInsets.only(top: 40, left: 28),
-                                      width: 130,
-                                      child: Text(
-                                        "STER",
-                                        style: TextStyle(
-                                          fontSize: 40,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                    alignment: Alignment.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Padding(
                               padding: EdgeInsets.only(
                                 bottom: 20,
@@ -481,7 +429,18 @@ class _LoginRegisterState extends State<LoginRegister> {
                               ),
                               child: CustomTextField(
                                 icon: Icon(Icons.account_circle),
-                                hint: "DISPLAY NAME",
+                                hint: "Имя",
+                                validator: (input) =>
+                                input.isEmpty ? "*Required" : null,
+                                onSaved: (input) => _displayName = input,
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                bottom: 20,
+                              ),
+                              child: CustomTextField(
+                                icon: Icon(Icons.account_circle),
+                                hint: "Фамилия",
                                 validator: (input) =>
                                 input.isEmpty ? "*Required" : null,
                                 onSaved: (input) => _displayName = input,
@@ -492,7 +451,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                               ),
                               child: CustomTextField(
                                 icon: Icon(Icons.email),
-                                hint: "EMAIL",
+                                hint: "Электронная почта",
                                 onSaved: (input) {
                                   _email = input;
                                 },
@@ -506,8 +465,22 @@ class _LoginRegisterState extends State<LoginRegister> {
                                 onSaved: (input) => _password = input,
                                 validator: (input) =>
                                 input.isEmpty ? "*Required" : null,
-                                hint: "PASSWORD",
+                                hint: "Пароль",
                               )),
+                          Padding(
+                              padding: EdgeInsets.only(bottom: 5, left: 10.0, right: 10.0),
+                              child: new Row(
+                                children: <Widget>[
+                                  new Checkbox(value: true),
+                                  new Text(
+                                    "Я принимаю Политику Конфиденциальности",
+                                    style: new TextStyle(fontSize: 12.0),
+                                  ),
+                                ],
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                              ),
+                          ),
                           Padding(
                             padding: EdgeInsets.only(
                                 left: 20,
@@ -520,7 +493,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                             )
                                 : Container(
                               child: filledButton(
-                                  "REGISTER",
+                                  "Зарегистрироваться",
                                   Colors.white,
                                   primaryColor,
                                   primaryColor,
