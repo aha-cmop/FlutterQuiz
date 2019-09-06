@@ -1,9 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
 import 'main.dart';
+import './MapPage.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,16 +15,58 @@ class _HomeState extends State<Home> {
 
   int _selectedTab = 0;
 
+  final _pageOptions = [
+    MapPage(),
+    HomePage(),
+    HomePage(),
+    HomePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: <Widget>[],
-        elevation: 0.0,
-        title: Text("HOME"),
+//      appBar: AppBar(
+//        actions: <Widget>[],
+//        elevation: 0.0,
+//        title: Text("HOME"),
+//      ),
+      body: _pageOptions[_selectedTab],
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _selectedTab,
+        showElevation: true,
+        onItemSelected: (index) => setState(() {
+          _selectedTab = index;
+        }),
+
+          items: [
+            BottomNavyBarItem(
+              icon: Icon(Icons.map),
+              title: Text("Карта")
+            ),
+            BottomNavyBarItem(
+                icon: Icon(Icons.access_time),
+                title: Text("Расписание"),
+            ),
+            BottomNavyBarItem(
+                icon: Icon(Icons.assignment_ind),
+                title: Text("Участники")
+            ), BottomNavyBarItem(
+                icon: Icon(Icons.info_outline),
+                title: Text("О событии")
+            ),
+          ],
       ),
-      body: Center(
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+
+    return Center(
         child: Column(
           children: <Widget>[
             FutureBuilder(
@@ -72,33 +115,6 @@ class _HomeState extends State<Home> {
           ],
           mainAxisAlignment: MainAxisAlignment.center,
         ),
-      ),
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _selectedTab,
-        showElevation: true,
-        onItemSelected: (index) => setState(() {
-          _selectedTab = index;
-        }),
-
-          items: [
-            BottomNavyBarItem(
-              icon: Icon(Icons.map),
-              title: Text("Карта")
-            ),
-            BottomNavyBarItem(
-                icon: Icon(Icons.access_time),
-                title: Text("Расписание"),
-            ),
-            BottomNavyBarItem(
-                icon: Icon(Icons.assignment_ind),
-                title: Text("Участники")
-            ),
-            BottomNavyBarItem(
-                icon: Icon(Icons.info_outline),
-                title: Text("О событии")
-            ),
-          ],
-      ),
-    );
+      );
   }
 }
