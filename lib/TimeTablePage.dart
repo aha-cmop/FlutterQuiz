@@ -31,19 +31,38 @@ class TimeTablePage extends StatelessWidget {
   return List.generate(_list.length, (sliverIndex) {
     print(sliverIndex);
     print(_list[sliverIndex]);
+
+    var events = snapVal[_list[sliverIndex]];
+    var eventsList = snapVal[_list[sliverIndex]].keys.toList();
     return new SliverStickyHeaderBuilder(
       builder: (context, state) =>
         _buildAnimatedHeader(context, _list[sliverIndex].toString(), state),
       sliver: new SliverList(
         delegate: new SliverChildBuilderDelegate(
-          (context, i) => new ListTile(
-            leading: new CircleAvatar(
-              child: new Text('$sliverIndex'),
-            ),
-            title: new Text('List tile #$i'),
-          ),
-          //childCount: snapVal[_list[sliverIndex]].length,
-          childCount: 20
+          (context, i) {
+            var event = TimeTableEntry.fromSnapshot(events[eventsList[i]]);
+            return new ExpansionTile(
+                leading: new Column(
+                  children: <Widget>[
+                    new Text(
+                      event.startTime,),
+                    new Text(
+                      event.endTime,
+                      style: const TextStyle(color: Colors.grey)),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                title: new Text(event.title),
+                children: <Widget>[
+                  Padding(
+                      padding: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                      child: Text(event.description),
+                  ),
+
+                ],
+            );
+          },
+          childCount: eventsList.length,
           ),
         ),
       );
@@ -114,16 +133,14 @@ class _containerForCat extends StatelessWidget {
 }
 
 class TimeTableEntry {
-  String key;
   String title;
   String startTime;
   String endTime;
   String description;
 
-  TimeTableEntry.fromSnapshot(DataSnapshot snapshot)
-      : key = snapshot.key,
-        title = snapshot.value["title"],
-        startTime = snapshot.value["start_time"],
-        endTime = snapshot.value["end_time"],
-        description = snapshot.value["description"];
+  TimeTableEntry.fromSnapshot(Map<dynamic, dynamic> snapshot)
+      : title = snapshot["title"],
+        startTime = snapshot["start_time"],
+        endTime = snapshot["end_time"],
+        description = snapshot["description"];
 }
