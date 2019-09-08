@@ -16,6 +16,7 @@ class _LoginRegisterState extends State<LoginRegister> {
   String _email;
   String _password;
   String _displayName;
+  String _displaySurName;
   bool _loading = false;
   bool _autoValidate = false;
   String errorMsg = "";
@@ -209,11 +210,12 @@ class _LoginRegisterState extends State<LoginRegister> {
               .createUserWithEmailAndPassword(
               email: _email, password: _password)).user;
           UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
-          userUpdateInfo.displayName = _displayName;
+          String displayName = _displayName + " " + _displaySurName;
+          userUpdateInfo.displayName = displayName;
           user.updateProfile(userUpdateInfo).then((onValue) {
             Navigator.of(context).pushReplacementNamed('/home');
             Firestore.instance.collection('users').document().setData(
-                {'email': _email, 'displayName': _displayName}).then((onValue) {
+                {'email': _email, 'displayName': displayName}).then((onValue) {
               _sheetController.setState(() {
                 _loading = false;
               });
@@ -443,7 +445,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                 hint: "Фамилия",
                                 validator: (input) =>
                                 input.isEmpty ? "*Required" : null,
-                                onSaved: (input) => _displayName = input,
+                                onSaved: (input) => _displaySurName = input,
                               )),
                           Padding(
                               padding: EdgeInsets.only(
