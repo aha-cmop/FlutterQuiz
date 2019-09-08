@@ -5,6 +5,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
 import 'main.dart';
 import './MapPage.dart';
+import './TimeTablePage.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
 
   final _pageOptions = [
     MapPage(),
-    HomePage(),
+    TimeTablePage(),
     HomePage(),
     HomePage(),
   ];
