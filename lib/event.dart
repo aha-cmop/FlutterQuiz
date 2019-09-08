@@ -7,20 +7,20 @@ import 'main.dart';
 import './MapPage.dart';
 import './TimeTablePage.dart';
 
-class Home extends StatefulWidget {
+class Event extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _EventState createState() => _EventState();
 }
 
-class _HomeState extends State<Home> {
+class _EventState extends State<Event> {
 
   int _selectedTab = 0;
 
   final _pageOptions = [
     MapPage(),
     TimeTablePage(),
-    HomePage(),
-    HomePage(),
+    EventPage(),
+    EventPage(),
   ];
 
   @override
@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class EventPage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import "login_page.dart";
-import "home.dart";
+import "event.dart";
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -31,13 +31,14 @@ class MyApp extends StatelessWidget {
         stream: auth.onAuthStateChanged,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Home();
+            return Event();
           }
           return LoginRegister();
         },
       ),
       routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => new Home(),
+        '/home': (BuildContext context) => new Event(),
+        '/event': (BuildContext context) => new Event(),
         '/login': (BuildContext context) => new LoginRegister()
       },
     );
