@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:firebase_database/firebase_database.dart';
@@ -38,9 +40,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Future<Null> pickEvent()  async  {
+    Future<Null> pickEvent(eventData)  async  {
       final SharedPreferences prefs = await _sprefs;
       prefs.setBool('picked', true);
+      print("TTTTTTTEEEEEEEESSSSSSTTTt");
+      print(eventData.toString());
+      await prefs.setString('event', jsonEncode(eventData));
       Navigator.of(context).pushReplacementNamed('/event');
     }
 
@@ -110,7 +115,7 @@ class HomePage extends StatelessWidget {
                     FlatButton(
                       child: const Text('Принять участие'),
                       textColor: Color(0xFF0B7BC1),
-                      onPressed: pickEvent,
+                      onPressed: () {pickEvent(eventSnapVal);},
                     ),
                   ],
                 ),
