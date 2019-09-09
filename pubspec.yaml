@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  path_provider: #add this in yours
   firebase_auth: 0.14.0+4
   cloud_firestore: 0.12.9+2
   firebase_storage: 3.0.6
