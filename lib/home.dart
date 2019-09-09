@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -30,88 +31,97 @@ class _HomeState extends State<Home> {
 }
 
 class HomePage extends StatelessWidget {
-
-  Widget _buildEventCard(eventSnapVal) {
-    var eventName = eventSnapVal["nazvanie-meropriyatiya"].toString();
-    var theme = eventSnapVal["tematika-meropriyatiya"].toString();
-    var address = eventSnapVal["adres"].toString();
-    var spaceName = eventSnapVal["nazvanie-ploshchadki"].toString();
-    var place = spaceName;
-    var startTime = eventSnapVal["start-meropriyatiya"].toString();
-    return Card(
-      margin: EdgeInsets.all(8.0),
-      child: Container(
-        margin: const EdgeInsets.only(left: 10.0, top: 5.0, bottom: 5.0),
-        decoration: BoxDecoration(
-          border: Border(
-            left: BorderSide(
-              color: Colors.blueAccent,
-              width: 3,
-            ),
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              title: Text(eventName),
-              subtitle: Text(theme),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                ),
-                Icon(Icons.place),
-                Padding(
-                  padding: EdgeInsets.only(left: 5.0),
-                ),
-                Text(place),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 5.0),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                ),
-                Icon(Icons.timer),
-                Padding(
-                  padding: EdgeInsets.only(left: 5.0),
-                ),
-                Text(startTime),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 5.0),
-                ),
-                Text("3 дня"),
-                FlatButton(
-                  child: const Text('Принять участие'),
-                  textColor: Color(0xFF0B7BC1),
-                  onPressed: () { /* ... */ },
-                ),
-              ],
-            ),
-          ],
-        ),
-      )
-    );
-
-
-  }
+  Future<SharedPreferences> _sprefs = SharedPreferences.getInstance();
 
   final ref = FirebaseDatabase.instance.reference().child('com_content/form');
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    Future<Null> pickEvent()  async  {
+      final SharedPreferences prefs = await _sprefs;
+      prefs.setBool('picked', true);
+      Navigator.of(context).pushReplacementNamed('/event');
+    }
+
+
+    Widget _buildEventCard(eventSnapVal) {
+      var eventName = eventSnapVal["nazvanie-meropriyatiya"].toString();
+      var theme = eventSnapVal["tematika-meropriyatiya"].toString();
+      var address = eventSnapVal["adres"].toString();
+      var spaceName = eventSnapVal["nazvanie-ploshchadki"].toString();
+      var place = spaceName;
+      var startTime = eventSnapVal["start-meropriyatiya"].toString();
+      return Card(
+          margin: EdgeInsets.all(8.0),
+          child: Container(
+            margin: const EdgeInsets.only(left: 10.0, top: 5.0, bottom: 5.0),
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(
+                  color: Colors.blueAccent,
+                  width: 3,
+                ),
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  title: Text(eventName),
+                  subtitle: Text(theme),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.0),
+                    ),
+                    Icon(Icons.place),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0),
+                    ),
+                    Text(place),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 5.0),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.0),
+                    ),
+                    Icon(Icons.timer),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0),
+                    ),
+                    Text(startTime),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0),
+                    ),
+                    Text("3 дня"),
+                    FlatButton(
+                      child: const Text('Принять участие'),
+                      textColor: Color(0xFF0B7BC1),
+                      onPressed: pickEvent,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
+      );
+
+
+    }
+
 
     return StreamBuilder(
             stream: ref.orderByChild("vid-uchastiya").equalTo(null).onValue,

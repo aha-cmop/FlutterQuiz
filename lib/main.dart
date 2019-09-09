@@ -1,10 +1,7 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import "login_page.dart";
@@ -20,29 +17,28 @@ void main() {
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
-class MyApp extends StatelessWidget {
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    print(directory.path);
-    return directory.path;
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => new _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  Future<SharedPreferences> _sprefs = SharedPreferences.getInstance();
+  bool picked;
+
+  Future<Null> getData() async {
+    final SharedPreferences prefs = await _sprefs;
+    bool data = prefs.getBool('picked') ?? false;
+    this.setState(() {
+      picked = data;
+    });
   }
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/data.txt');
-  }
-
-  Future<String> readContent() async {
-    try {
-      final file = await _localFile;
-      // Read the file
-      String contents = await file.readAsString();
-      // Returning the contents of the file
-      return contents;
-    } catch (e) {
-      // If encountering an error, return
-      return 'Error!';
-    }
+  @override
+  void initState() {
+    super.initState();
+    getData();
   }
 
   // This widget is the root of your application.
@@ -61,21 +57,9 @@ class MyApp extends StatelessWidget {
         stream: auth.onAuthStateChanged,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return FutureBuilder(
-              future: readContent(),
-              builder: (BuildContext context, AsyncSnapshot textSnap) {
-                if (textSnap.connectionState == ConnectionState.waiting) {
-                  return Container();
-                } else {
-                  print("TEXTSSSSPNASFASD");
-                  print(textSnap.data);
-                  var content = textSnap.data;
-                  if (content == 'Error!' || content == null)
-                    return Home();
-                  return Event();
-                }
-              }
-            );
+            if (picked)
+              return Event();
+            return Home();
           }
           return LoginRegister();
         },
