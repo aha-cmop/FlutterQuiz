@@ -6,6 +6,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'main.dart';
 import './MapPage.dart';
 import './TimeTablePage.dart';
+import './ParticipantsPage.dart';
 import './InfoPage.dart';
 
 class Event extends StatefulWidget {
@@ -20,7 +21,7 @@ class _EventState extends State<Event> {
   final _pageOptions = [
     MapPage(),
     TimeTablePage(),
-    EventPage(),
+    ParticipantsPage(),
     InfoPage(),
   ];
 
