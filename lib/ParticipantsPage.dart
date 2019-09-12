@@ -56,7 +56,7 @@ class _ParticipantsPage extends State<ParticipantsPage> {
       var busn_way = eventSnapVal["napravlenie-biznesa"].toString();
 
       return Card(
-        margin: EdgeInsets.all(10.0),
+        margin: EdgeInsets.all(8.0),
         child: ListTile(
           title: Text(title),
           subtitle: Text(busn_way),
@@ -83,8 +83,13 @@ class _ParticipantsPage extends State<ParticipantsPage> {
               : Container(
                   child: Column(
                       children: <Widget>[
+                        AppBar(
+                          actions: <Widget>[],
+                          elevation: 0.0,
+                          title: Text("Участники"),
+                        ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
                           child: TextField(
                             onChanged: (value) {
 
