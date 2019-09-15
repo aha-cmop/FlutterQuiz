@@ -16,6 +16,14 @@ class TimeTablePage extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColor,
       title: Text('Расписание'),
       pinned: true,
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.exit_to_app),
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed('/home');
+          },
+        )
+      ],
     ));
 
     slivers.addAll(_buildHeaderBuilderLists(context, snapVal));

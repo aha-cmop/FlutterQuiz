@@ -44,6 +44,19 @@ class _InfoPageState extends State<InfoPage> {
             child: Container(color: Color(0xFF0B7BC1).withOpacity(0.8)),
             clipper: getClipper(),
           ),
+          AppBar(
+            elevation: 0.0,
+            backgroundColor: Colors.transparent,
+            title: Text("Информация"),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed('/home');
+                },
+              )
+            ],
+          ),
           Positioned(
               width: 350.0,
               top: MediaQuery.of(context).size.height / 10,

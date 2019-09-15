@@ -25,10 +25,31 @@ class MapPage extends StatelessWidget {
                     return Text('Error: ${url.error}');
                   print("HELLOOO!!!!!!!!!!!");
                   print('Result: ${url.data}');
-                  return
-                    PhotoView(
-                      imageProvider: new NetworkImage(url.data),
-                      backgroundDecoration: BoxDecoration(color: Colors.white),
+                  return Container(
+                    child: Column(
+                        children: <Widget>[
+                          AppBar(
+                            elevation: 0.0,
+                            title: Text("Карта"),
+                            actions: <Widget>[
+                              IconButton(
+                                icon: Icon(Icons.exit_to_app),
+                                onPressed: () {
+                                  Navigator.of(context).pushReplacementNamed('/home');
+                                },
+                              )
+                            ],
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: PhotoView(
+                                imageProvider: new NetworkImage(url.data),
+                                backgroundDecoration: BoxDecoration(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                    ),
                   );
               }
               return null;
