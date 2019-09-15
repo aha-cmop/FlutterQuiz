@@ -2,14 +2,23 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class TimeTablePage extends StatelessWidget {
   // This widget is the root of your application.
 
   final ref = FirebaseDatabase.instance.reference().child('time_tables');
+  Future<SharedPreferences> _sprefs = SharedPreferences.getInstance();
 
   List<Widget> _buildSlivers(BuildContext context, snapVal) {
+
+    unpickEvent()  async  {
+      final SharedPreferences prefs = await _sprefs;
+      prefs.setBool('picked', false);
+      Navigator.of(context).pushReplacementNamed('/home');
+    }
+
     List<Widget> slivers = new List<Widget>();
 
     slivers.add(SliverAppBar(
@@ -19,9 +28,7 @@ class TimeTablePage extends StatelessWidget {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.exit_to_app),
-          onPressed: () {
-            Navigator.of(context).pushReplacementNamed('/home');
-          },
+          onPressed: unpickEvent,
         )
       ],
     ));

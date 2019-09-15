@@ -160,6 +160,12 @@ class _ParticipantsPage extends State<ParticipantsPage> {
       );
     }
 
+    unpickEvent()  async  {
+      final SharedPreferences prefs = await _sprefs;
+      prefs.setBool('picked', false);
+      Navigator.of(context).pushReplacementNamed('/home');
+    }
+
 
     print("HHHEEE");
     if (pickedEvent == null)
@@ -187,9 +193,7 @@ class _ParticipantsPage extends State<ParticipantsPage> {
                             actions: <Widget>[
                               IconButton(
                                 icon: Icon(Icons.exit_to_app),
-                                onPressed: () {
-                                  Navigator.of(context).pushReplacementNamed('/home');
-                                },
+                                onPressed: unpickEvent,
                               )
                             ],
                           ),

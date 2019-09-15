@@ -11,6 +11,7 @@ class InfoPage extends StatefulWidget {
   @override
   _InfoPageState createState() => new _InfoPageState();
 }
+
 class _InfoPageState extends State<InfoPage> {
 
   Future<SharedPreferences> _sprefs = SharedPreferences.getInstance();
@@ -34,6 +35,12 @@ class _InfoPageState extends State<InfoPage> {
     getData();
   }
 
+  unpickEvent()  async  {
+    final SharedPreferences prefs = await _sprefs;
+    prefs.setBool('picked', false);
+    Navigator.of(context).pushReplacementNamed('/home');
+  }
+
   @override
   Widget build(BuildContext context) {
     if (pickedEvent == null)
@@ -51,9 +58,7 @@ class _InfoPageState extends State<InfoPage> {
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.exit_to_app),
-                onPressed: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
+                onPressed: unpickEvent,
               )
             ],
           ),
