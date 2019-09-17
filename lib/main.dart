@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import "login_page.dart";
 import "event.dart";
 import "home.dart";
+import 'start_page.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -14,8 +14,6 @@ void main() {
     runApp(new MyApp());
   });
 }
-
-final FirebaseAuth auth = FirebaseAuth.instance;
 
 class MyApp extends StatefulWidget {
   @override
@@ -45,6 +43,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
+    Widget createPage() {
+      if (picked == null)
+        return Center(child: CircularProgressIndicator());
+      return picked ? Event() : Start();
+
+    }
+
     return MaterialApp(
       title: 'GO',
       debugShowCheckedModeBanner: false,
@@ -53,21 +58,10 @@ class _MyAppState extends State<MyApp> {
           primaryColor: Color(0xFF0B7BC1),
           fontFamily: "Montserrat",
           canvasColor: Colors.transparent),
-      home: new StreamBuilder(
-        stream: auth.onAuthStateChanged,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if (picked)
-              return Event();
-            return Home();
-          }
-          return LoginRegister();
-        },
-      ),
+      home: Builder( builder: (context) => createPage()),
       routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => new Home(),
+        '/home': (BuildContext context) => new Start(),
         '/event': (BuildContext context) => new Event(),
-        '/login': (BuildContext context) => new LoginRegister()
       },
     );
   }

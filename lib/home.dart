@@ -22,11 +22,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-//      appBar: AppBar(
-//        actions: <Widget>[],
-//        elevation: 0.0,
-//        title: Text("HOME"),
-//      ),
+      appBar: AppBar(
+        actions: <Widget>[],
+        elevation: 0.0,
+        title: Text("События"),
+      ),
       body: _pageOptions[_selectedTab],
     );
   }
