@@ -23,6 +23,7 @@ class _ParticipantsPage extends State<ParticipantsPage> {
   PersistentBottomSheetController _sheetController;
 
   var pickedEvent;
+  var _filter = "";
 
   Future<Null> getData() async {
     final SharedPreferences prefs = await _sprefs;
@@ -40,6 +41,17 @@ class _ParticipantsPage extends State<ParticipantsPage> {
   void initState() {
     super.initState();
     getData();
+    editingController.addListener(() {
+      setState(() {
+        _filter = editingController.text;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    editingController.dispose();
+    super.dispose();
   }
 
   // This widget is the root of your application.
@@ -200,9 +212,6 @@ class _ParticipantsPage extends State<ParticipantsPage> {
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
                             child: TextField(
-                              onChanged: (value) {
-
-                              },
                               controller: editingController,
                               decoration: InputDecoration(
                                   labelText: "Поиск",
@@ -216,6 +225,11 @@ class _ParticipantsPage extends State<ParticipantsPage> {
                               child: ListView.builder(
                                   itemCount: asList.length,
                                   itemBuilder: (BuildContext ctxt, int index) {
+                                    if (_filter != null && _filter != "") {
+                                      final part = snapVal[asList[index]]["title"].toString();
+                                      if (!part.toLowerCase().contains(_filter.toString().toLowerCase()))
+                                        return Container();
+                                    }
                                     return _buildParticipantCard(snapVal[asList[index]]);
                                   }
                             ),
