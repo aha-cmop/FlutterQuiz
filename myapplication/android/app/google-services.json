@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "863321652018",
+    "firebase_url": "https://visitor-online.firebaseio.com",
+    "project_id": "visitor-online",
+    "storage_bucket": "visitor-online.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863321652018:android:9c6efcc46cf9882871752b",
+        "android_client_info": {
+          "package_name": "underground.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863321652018-7fgctjpopj8fvl29ecphpa0umt6rqji1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApGVY43bXSQkU-ENxrKYtySuM7LGTC2Kk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863321652018-7fgctjpopj8fvl29ecphpa0umt6rqji1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "863321652018-64m88dmpfb0hvslb26nvrn6253g8hj6u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "underground.visitor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
