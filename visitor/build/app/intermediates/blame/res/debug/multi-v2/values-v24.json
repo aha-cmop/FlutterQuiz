@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/igor-emlid/Documents/Flutter/visitor/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/igor-emlid/Documents/Flutter/visitor/visitor/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/home/igor-emlid/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/5246e8aec75646bab7e3a2a16c6570fb/res/values-v24/values-v24.xml",

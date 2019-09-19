@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/igor-emlid/Documents/Flutter/visitor/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
+            "outputFile": "/home/igor-emlid/Documents/Flutter/visitor/visitor/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
             "map": [
                 {
                     "source": "/home/igor-emlid/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/6cf3bcd0152e6a9402e2e2d8a22d3ec5/res/values-km/values.xml",
