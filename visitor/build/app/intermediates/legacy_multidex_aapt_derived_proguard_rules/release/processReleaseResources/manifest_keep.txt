@@ -1,0 +1,2 @@
+# Referenced at /home/igor-emlid/Documents/Flutter/visitor/build/app/intermediates/merged_manifests/release/processReleaseManifest/merged/AndroidManifest.xml:25
+-keep class io.flutter.app.FlutterApplication { <init>(...); }

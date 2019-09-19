@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">863321652018-7fgctjpopj8fvl29ecphpa0umt6rqji1.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://visitor-online.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">863321652018</string>
+    <string name="google_api_key" translatable="false">AIzaSyApGVY43bXSQkU-ENxrKYtySuM7LGTC2Kk</string>
+    <string name="google_app_id" translatable="false">1:863321652018:android:eb16fe3c09980099</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyApGVY43bXSQkU-ENxrKYtySuM7LGTC2Kk</string>
+    <string name="google_storage_bucket" translatable="false">visitor-online.appspot.com</string>
+    <string name="project_id" translatable="false">visitor-online</string>
+</resources>
