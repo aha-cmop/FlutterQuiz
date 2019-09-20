@@ -49,14 +49,14 @@ class HomePage extends StatelessWidget {
       Navigator.of(context).pushReplacementNamed('/event');
     }
 
-
-    Widget _buildEventCard(eventSnapVal) {
+    Widget _buildEventCard(eventSnapVal, daysBefore) {
       var eventName = eventSnapVal["nazvanie-meropriyatiya"].toString();
       var theme = eventSnapVal["tematika-meropriyatiya"].toString();
       var address = eventSnapVal["adres"].toString();
       var spaceName = eventSnapVal["nazvanie-ploshchadki"].toString();
       var place = spaceName;
       var startTime = eventSnapVal["start-meropriyatiya"].toString();
+
       return Card(
           margin: EdgeInsets.all(8.0),
           child: Container(
@@ -111,11 +111,11 @@ class HomePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 5.0),
                     ),
-                    Text("3 дня"),
+                    Text("Дней до начала: $daysBefore", textAlign: TextAlign.start,),
                     FlatButton(
                       child: const Text('Принять участие'),
                       textColor: Color(0xFF0B7BC1),
-                      onPressed: () {pickEvent(eventSnapVal);},
+                      onPressed: (daysBefore <= 3) ? () {pickEvent(eventSnapVal);} : null,
                     ),
                   ],
                 ),
@@ -141,7 +141,17 @@ class HomePage extends StatelessWidget {
                     child: ListView.builder(
                         itemCount: asList.length,
                         itemBuilder: (BuildContext ctxt, int index) {
-                          return _buildEventCard(snapVal[asList[index]]);
+
+                          final startTime = snapVal[asList[index]]["start-meropriyatiya"].toString();
+                          DateTime startDate = DateTime.parse(startTime);
+                          final dateNow = DateTime.now();
+                          final daysBefore = startDate.difference(dateNow).inDays;
+
+                          if (daysBefore < 0)
+                            return Container();
+
+
+                          return _buildEventCard(snapVal[asList[index]], daysBefore);
                         }
                     ),
                 );
