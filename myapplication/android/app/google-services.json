@@ -1,42 +1,35 @@
 {
   "project_info": {
-    "project_number": "863321652018",
-    "firebase_url": "https://visitor-online.firebaseio.com",
-    "project_id": "visitor-online",
-    "storage_bucket": "visitor-online.appspot.com"
+    "project_number": "34081754366",
+    "firebase_url": "https://application-3f3d4.firebaseio.com",
+    "project_id": "application-3f3d4",
+    "storage_bucket": "application-3f3d4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:863321652018:android:9c6efcc46cf9882871752b",
+        "mobilesdk_app_id": "1:34081754366:android:758c1b9e69af6036c729af",
         "android_client_info": {
           "package_name": "underground.myapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "863321652018-7fgctjpopj8fvl29ecphpa0umt6rqji1.apps.googleusercontent.com",
+          "client_id": "34081754366-3u6cjvono5csocb3680um9uq4j3m1ks4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyApGVY43bXSQkU-ENxrKYtySuM7LGTC2Kk"
+          "current_key": "AIzaSyDCpJW4rtUyEanwtHyeAXLqcZQsrbBFEI8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "863321652018-7fgctjpopj8fvl29ecphpa0umt6rqji1.apps.googleusercontent.com",
+              "client_id": "34081754366-3u6cjvono5csocb3680um9uq4j3m1ks4.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "863321652018-64m88dmpfb0hvslb26nvrn6253g8hj6u.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "underground.visitor"
-              }
             }
           ]
         }
