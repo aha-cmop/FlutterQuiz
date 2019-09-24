@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         actions: <Widget>[],
         elevation: 0.0,
-        title: Text("Выберите событие"),
+        title: Text("Выберите мероприятие"),
       ),
       body: _pageOptions[_selectedTab],
     );
@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
                     ),
                     Text("Дней до начала: $daysBefore", textAlign: TextAlign.start,),
                     FlatButton(
-                      child: const Text('Принять участие'),
+                      child: const Text('Подробнее'),
                       textColor: Color(0xFF0B7BC1),
                       onPressed: (daysBefore <= 3) ? () {pickEvent(eventSnapVal);} : null,
                     ),
