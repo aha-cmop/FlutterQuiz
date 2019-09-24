@@ -125,7 +125,7 @@ class _InfoPageState extends State<InfoPage> {
                   GestureDetector(
                     onTap: () {
                       print("EEEEEEEEEEEEE");
-                      launch('https://docs.flutter.io/flutter/services/UrlLauncher-class.html');
+                      launch(pickedEvent['sajt-organizatora']);
                     },
                     child: Card(
                       child: ListTile(
