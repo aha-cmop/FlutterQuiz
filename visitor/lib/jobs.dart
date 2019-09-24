@@ -13,7 +13,8 @@ class _JobsState extends State<Jobs> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   PersistentBottomSheetController _sheetController;
 
-  final url="http://opendata.trudvsem.ru/api/v1/vacancies?offset=1&limit=100";
+  var url="http://opendata.trudvsem.ru/api/v1/vacancies?limit=30&offset=";
+  var _offset=1;
   TextEditingController editingController = TextEditingController();
 
   var _filter = "";
@@ -34,7 +35,7 @@ class _JobsState extends State<Jobs> {
   }
 
   getJobs() async {
-    final response = await http.get(url);
+    final response = await http.get(url + _offset.toString());
     return json.decode(response.body);
   }
 
@@ -197,15 +198,22 @@ class _JobsState extends State<Jobs> {
                     var asList = jobsSnap.data["results"]["vacancies"];
                     return Expanded(
                       child: ListView.builder(
-                        itemCount: asList.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          if (_filter != null && _filter != "") {
-                            final vac = asList[index]["vacancy"];
-                            if (!vac["job-name"].toString().toLowerCase().contains(_filter.toString().toLowerCase()))
-                              return Container();
-                          }
-                          return _buildJobCard(asList[index]);
-                        }),
+                            itemCount: asList.length + 2,
+                            itemBuilder: (BuildContext ctxt, int index) {
+                              if (index == 0) {
+                                return _offset == 1 ? Container() : Text("Hello");
+                              }
+                              if (index == asList.length + 1) {
+                                return _offset >= 20 ? Container() : Text("Hello");
+                              }
+
+                              if (_filter != null && _filter != "") {
+                                final vac = asList[index]["vacancy"];
+                                if (!vac["job-name"].toString().toLowerCase().contains(_filter.toString().toLowerCase()))
+                                  return Container();
+                              }
+                              return _buildJobCard(asList[index - 1]);
+                            }),
                     );
                 }
                 return Center(child: CircularProgressIndicator());
