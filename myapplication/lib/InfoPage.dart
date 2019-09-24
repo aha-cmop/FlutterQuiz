@@ -55,12 +55,11 @@ class _InfoPageState extends State<InfoPage> {
             elevation: 0.0,
             backgroundColor: Colors.transparent,
             title: Text("Информация"),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.exit_to_app),
-                onPressed: unpickEvent,
-              )
-            ],
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: unpickEvent,
+            ),
           ),
           Positioned(
               width: 350.0,

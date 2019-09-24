@@ -40,12 +40,11 @@ class MapPage extends StatelessWidget {
                           AppBar(
                             elevation: 0.0,
                             title: Text("Карта"),
-                            actions: <Widget>[
-                              IconButton(
-                                icon: Icon(Icons.exit_to_app),
-                                onPressed: unpickEvent,
-                              )
-                            ],
+                            centerTitle: true,
+                            leading: IconButton(
+                              icon: Icon(Icons.arrow_back),
+                              onPressed: unpickEvent,
+                            ),
                           ),
                           Expanded(
                             child: Container(

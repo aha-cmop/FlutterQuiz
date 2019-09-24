@@ -202,12 +202,11 @@ class _ParticipantsPage extends State<ParticipantsPage> {
                           AppBar(
                             elevation: 0.0,
                             title: Text("Участники"),
-                            actions: <Widget>[
-                              IconButton(
-                                icon: Icon(Icons.exit_to_app),
-                                onPressed: unpickEvent,
-                              )
-                            ],
+                            centerTitle: true,
+                            leading: IconButton(
+                              icon: Icon(Icons.arrow_back),
+                              onPressed: unpickEvent,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
