@@ -135,6 +135,15 @@ class HomePage extends StatelessWidget {
                 DataSnapshot snapshot = snap.data.snapshot;
                 var snapVal = snapshot.value;
                 var asList = snapVal.keys.toList();
+                asList.sort((a, b) {
+                  final startTimeA = snapVal[a]["start-meropriyatiya"].toString();
+                  final startTimeB = snapVal[b]["start-meropriyatiya"].toString();
+                  DateTime startDateA = DateTime.parse(startTimeA);
+                  DateTime startDateB = DateTime.parse(startTimeB);
+                  final days = startDateA.difference(startDateB).inDays;
+                  print("DAYS!!! $days");
+                  return days;
+                });
                 return snap.data.snapshot.value == null
                     ? SizedBox()
                     : Container(
