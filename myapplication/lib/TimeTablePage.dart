@@ -100,7 +100,7 @@ class TimeTablePage extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: new Text(
           index,
-          style: const TextStyle(color: Colors.white, fontSize: 20.0),
+          style: const TextStyle(color: Colors.white, fontSize: 17.0),
         ),
       ),
     );
