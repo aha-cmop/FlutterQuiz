@@ -16,7 +16,7 @@ class Event extends StatefulWidget {
 
 class _EventState extends State<Event> {
 
-  int _selectedTab = 0;
+  int _selectedTab = 3;
 
   final _pageOptions = [
     MapPage(),
