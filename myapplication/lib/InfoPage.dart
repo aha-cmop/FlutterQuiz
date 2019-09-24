@@ -68,28 +68,30 @@ class _InfoPageState extends State<InfoPage> {
               bottom: MediaQuery.of(context).size.height / 3.5,
               child: Column(
                 children: <Widget>[
+                  SizedBox(height: 15.0),
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0),
                     child: Text(
                       pickedEvent["nazvanie-meropriyatiya"],
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                       style: TextStyle(
                         fontFamily: 'Spectral',
                         color: Colors.black,
-                        fontSize: 20.0,
+                        fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 15.0),
-                  Text(
-                    pickedEvent["tematika-meropriyatiya"],
-                    style: TextStyle(
-                        fontSize: 17.0,
-                        fontStyle: FontStyle.italic,
-                        color: Colors.pink,
-                        fontFamily: 'Montserrat'),
-                  ),
+//                  Text(
+//                    pickedEvent["tematika-meropriyatiya"],
+//                    style: TextStyle(
+//                        fontSize: 17.0,
+//                        fontStyle: FontStyle.italic,
+//                        color: Colors.pink,
+//                        fontFamily: 'Montserrat'),
+//                  ),
                 ],
               )
           ),
