@@ -56,6 +56,11 @@ class HomePage extends StatelessWidget {
       var spaceName = eventSnapVal["nazvanie-ploshchadki"].toString();
       var place = spaceName;
       var startTime = eventSnapVal["start-meropriyatiya"].toString();
+      var mes = "Дней до начала: $daysBefore";
+      if (daysBefore > 3) {
+        startTime = "xxxx-xx-xx xx:xx:xx";
+        mes = "";
+      }
 
       return Card(
           margin: EdgeInsets.all(8.0),
@@ -111,7 +116,7 @@ class HomePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 5.0),
                     ),
-                    Text("Дней до начала: $daysBefore", textAlign: TextAlign.start,),
+                    Text(mes, textAlign: TextAlign.start,),
                     FlatButton(
                       child: const Text('Подробнее'),
                       textColor: Color(0xFF0B7BC1),
@@ -129,7 +134,7 @@ class HomePage extends StatelessWidget {
 
 
     return StreamBuilder(
-            stream: ref.orderByChild("vid-uchastiya").equalTo(null).onValue,
+            stream: ref.orderByChild("meropriyatiya").equalTo(null).onValue,
             builder: (BuildContext context, AsyncSnapshot snap) {
               if (snap.hasData && !snap.hasError && snap.data.snapshot.value!=null) {
                 DataSnapshot snapshot = snap.data.snapshot;
