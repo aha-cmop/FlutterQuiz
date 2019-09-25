@@ -156,17 +156,16 @@ class _ParticipantsPage extends State<ParticipantsPage> {
       var spaceName = eventSnapVal["nazvanie-ploshchadki"].toString();
       var title = eventSnapVal["title"].toString();
       var busn_way = eventSnapVal["napravlenie-biznesa"].toString();
+      var place = eventSnapVal["mesto-na-meropriyatii"].toString();
 
       return GestureDetector(
         onTap: () {
-          partInfoSheet(eventSnapVal);
         },
         child: Card(
           margin: EdgeInsets.all(8.0),
           child: ListTile(
             title: Text(title),
-            subtitle: Text(busn_way),
-            trailing: Icon(Icons.arrow_forward_ios),
+            subtitle: Text("Номер стенда: $place"),
           ),
         )
       );
