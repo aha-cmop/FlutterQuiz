@@ -35,7 +35,11 @@ class _JobsState extends State<Jobs> {
   }
 
   getJobs() async {
-    final response = await http.get(url + _offset.toString());
+    var request = url + _offset.toString();
+    if (_filter.isNotEmpty)
+      request += "&text=$_filter";
+    print("REQUEST!!! $request");
+    final response = await http.get(request);
     return json.decode(response.body);
   }
 
@@ -196,6 +200,8 @@ class _JobsState extends State<Jobs> {
                     print('Result: ${jobsSnap.data}');
 
                     var asList = jobsSnap.data["results"]["vacancies"];
+                    if (asList == null)
+                      return Center(child: Text("Ничего не найдено. Попробуйте ввести полное слово"),);
                     return Expanded(
                       child: ListView.builder(
                             itemCount: asList.length + 2,
@@ -207,11 +213,6 @@ class _JobsState extends State<Jobs> {
                                 return _offset >= 20 ? Container() : Text("Hello");
                               }
 
-                              if (_filter != null && _filter != "") {
-                                final vac = asList[index]["vacancy"];
-                                if (!vac["job-name"].toString().toLowerCase().contains(_filter.toString().toLowerCase()))
-                                  return Container();
-                              }
                               return _buildJobCard(asList[index - 1]);
                             }),
                     );
